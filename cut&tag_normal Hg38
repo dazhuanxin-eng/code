@@ -33,13 +33,13 @@ do
         -S ${SAMPLE}.sam
 
     # ======= 转换并排序 =======
-    samtools view -S -b ${SAMPLE}.sam > ${SAMPLE}.bam
-    samtools sort ${SAMPLE}.bam -o ${SAMPLE}.sorted.bam
-    samtools index ${SAMPLE}.sorted.bam
-    rm ${SAMPLE}.sam ${SAMPLE}.bam  # 节省空间
+    samtools view -S -b ${SAMPLE}.hg38..sam > ${SAMPLE}.hg38..bam
+    samtools sort ${SAMPLE}.hg38..bam -o ${SAMPLE}.hg38..sorted.bam
+    samtools index ${SAMPLE}.hg38..sorted.bam
+    rm ${SAMPLE}.hg38..sam ${SAMPLE}.hg38..bam  # 节省空间
 
     # ======= 生成bigwig (not run) =======
-    bamCoverage -b ${SAMPLE}.sorted.bam -o ${OUT_DIR}/${SAMPLE}.bw \
+    bamCoverage -b ${SAMPLE}.hg38..sorted.bam -o ${OUT_DIR}/${SAMPLE}.hg38.bw \
         --normalizeUsing CPM --binSize 10 --extendReads 200
 
     echo "✅ Finished ${SAMPLE}"
